@@ -14,6 +14,13 @@ def placement_soldier(row = 0,col= 0) :
     r= row * consts.CELL_SIZE
     c=col * consts.CELL_SIZE
     return r,c
+def check_place(r,c):
+  if r >= consts.BOARD_ROWS :
+      return False
+  if c >= consts.BOARD_COLS :
+      return False
+  return True
+
 
 def remove_soldier():
     if consts.HEAD in game_field.game_matriz:
