@@ -47,4 +47,6 @@ def if_touch(r,c):
 
 def move():
     global tuple
+
+    if
         if_touch(tuple[0],tuple[1]+1)
