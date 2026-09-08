@@ -25,16 +25,16 @@ def if_touch(r,c):
     tuple=(r,c)
     for row in range(r,consts.SOLDIER_BODY_ROWS):
         for col in range(c,consts.SOLDIER_COLS):
-            if game_matriz[row][col] ==consts.EMPTY_COL:
-                game_matriz[row][col]=consts.HEAD
-            elif game_matriz[row][col]==consts.FLAG:
+            if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
+                game_field.game_matriz[row][col]=consts.HEAD
+            elif game_field.game_matriz[row][col]==consts.FLAG:
                 main.winner()
                 sys.exit()
     for row in range(r,consts.SOLDIER_FEET_ROWS):
         for col in range(c,consts.SOLDIER_COLS):
-            if game_matriz[row][col] ==consts.EMPTY_COL:
-                game_matriz[row][col]=consts.LEGS
-            elif game_matriz[row][col]==consts.MINE:
+            if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
+                game_field.game_matriz[row][col]=consts.LEGS
+            elif game_field.game_matriz[row][col]==consts.MINE:
                 main.loser()
                 sys.exit()
 

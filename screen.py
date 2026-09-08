@@ -37,12 +37,19 @@ textRect = text.get_rect()
 text2Rect = text.get_rect()
 textRect.center = ( 150,  20)
 text2Rect.center = ( 150,  40)
-image3 = pygame.image.load('flag.png')
+def create_flag() :
+  image3 = pygame.image.load('flag.png')
+
+  image_flag = pygame.transform.scale(image3, (consts.CELL_SIZE * consts.FLAG_ROWS , consts.CELL_SIZE * consts.FLAG_COLS ))
+  return image_flag
+
+size= consts.CELL_SIZE
 for i in range (1) :
     surface.blit(soldier.create_soldier(), soldier.placement_soldier())
+    surface.blit(create_flag() , (consts.flag_col * size , consts.flag_row * size))
     surface.blit(text, textRect)
     surface.blit(text2, text2Rect)
-
+    # (consts.CELL_SIZE * flag_row,                                         consts.CELL_SIZE * flag_co
     #surface.blit(image,(0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
