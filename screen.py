@@ -8,7 +8,6 @@ import sys
 import time
 
 
-global surface
 surface = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
 
@@ -57,11 +56,10 @@ GREEN = (0, 255, 0, 255)
 
 
 def create_screen_grid():
-    global surface
     pygame.init()
-    #SCREEN = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
+    SCREEN = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
     #CLOCK = pygame.time.Clock()
-
+    SCREEN.fill(BLACK)
     while True:
      drawGrid(game_field.get_matrix())
      pygame.display.update()
@@ -92,4 +90,3 @@ def drawGrid(matrix):
 
     surface.blit(sol, soldier.soldier_pos)
 create_screen_grid()
-time.sleep(5)
