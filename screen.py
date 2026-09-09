@@ -2,7 +2,10 @@ import pygame
 import time
 import consts
 import random
+import game_field
 import soldier
+
+
 pygame.init()
 surface = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
@@ -16,16 +19,19 @@ image1 = pygame.image.load('grass.png')
 w = image1.get_width()
 h = image1.get_height()
 image_grass = pygame.transform.scale(image1, (w * 0.1 , h * 0.1))
+def create_flag() :
+  image3 = pygame.image.load('flag.png')
+
+  image_flag = pygame.transform.scale(image3, (consts.CELL_SIZE * consts.FLAG_ROWS , consts.CELL_SIZE * consts.FLAG_COLS ))
+  return image_flag
 
 for i in range (20) :
-    surface.blit(image_grass, (random.randint(0, 819), random.randint(0, 460)))
-    #surface.blit(image,(0,0))
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
-    pygame.display.update()
+    surface.blit(image_grass, (random.randint(0, consts.WINDOW_WIDTH - consts.CELL_SIZE ) , random.randint(0, consts.WINDOW_HEIGHT - consts.CELL_SIZE )))
+    # for event in pygame.event.get():
+    #     if event.type == pygame.QUIT:
+    #         pygame.quit()
+    #         quit()
+    # pygame.display.update()
 
 
 
@@ -37,31 +43,27 @@ textRect = text.get_rect()
 text2Rect = text.get_rect()
 textRect.center = ( 150,  20)
 text2Rect.center = ( 150,  40)
-def create_flag() :
-  image3 = pygame.image.load('flag.png')
 
-  image_flag = pygame.transform.scale(image3, (consts.CELL_SIZE * consts.FLAG_ROWS , consts.CELL_SIZE * consts.FLAG_COLS ))
-  return image_flag
 
 size= consts.CELL_SIZE
-for i in range (1) :
-    surface.blit(soldier.create_soldier(), soldier.placement_soldier())
-    surface.blit(create_flag() , (consts.flag_col * size , consts.flag_row * size))
-    surface.blit(text, textRect)
-    surface.blit(text2, text2Rect)
-    # (consts.CELL_SIZE * flag_row,                                         consts.CELL_SIZE * flag_co
+#for i in range (1) :
+surface.blit(soldier.create_soldier(), soldier.placement_soldier())
+surface.blit(create_flag(), (consts.flag_col * size , consts.flag_row * size))
+surface.blit(text, textRect)
+surface.blit(text2, text2Rect)
+# (consts.CELL_SIZE * flag_row,                                         consts.CELL_SIZE * flag_co
     #surface.blit(image,(0,0))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
-    pygame.display.update()
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        quit()
+pygame.display.update()
 
-
+#
 time.sleep(5)
-pygame.quit()
+# pygame.quit()
 
-def winner():
-    pass
-def loser():
-    pass
+# def winner():
+#     pass
+# def loser():
+#     pass

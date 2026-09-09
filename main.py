@@ -21,4 +21,5 @@ def keys_pressed(): #הפעולה שבאמצעות המקשים שנלחצו ת�
                        click = "r"
     return click
 
-
+def winner():
+    pass

@@ -3,6 +3,7 @@ import screen
 game_matriz=[]
 from random import randrange
 import consts
+import pygame
 
 
 def inserting ():
