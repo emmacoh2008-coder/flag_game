@@ -60,7 +60,7 @@ for i in range (1) :
 
 time.sleep(5)
 pygame.quit()
-print("hi")
+
 # def winner():
 #     pass
 # def loser():
