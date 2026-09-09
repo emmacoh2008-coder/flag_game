@@ -5,15 +5,23 @@ import random
 import game_field
 import soldier
 import sys
+import time
+
 
 surface = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
-ye
+
 def create_flag() :
   image3 = pygame.image.load('flag.png')
 
   image_flag = pygame.transform.scale(image3, (consts.CELL_SIZE * consts.FLAG_ROWS , consts.CELL_SIZE * consts.FLAG_COLS ))
   return image_flag
+
+grasses=[(random.randint(0, consts.WINDOW_WIDTH - consts.CELL_SIZE),random.randint(0, consts.WINDOW_HEIGHT - consts.CELL_SIZE))for _ in range(20)]
+
+
+
+
 
 size= consts.CELL_SIZE
 sol = soldier.create_soldier()
@@ -27,8 +35,9 @@ def create_screen() :
     w = image1.get_width()
     h = image1.get_height()
     image_grass = pygame.transform.scale(image1, (w * 0.1, h * 0.1))
-    for i in range(20):
-        surface.blit(image_grass, (random.randint(0, consts.WINDOW_WIDTH - consts.CELL_SIZE), random.randint(0, consts.WINDOW_HEIGHT - consts.CELL_SIZE)))
+    for grass in grasses:
+        surface.blit(image_grass,grass )
+
     f = pygame.font.SysFont('arial', 20)
     text = f.render('Welcome to The Flag game.', True, 'white')
     text2 = f.render('Have fun!', True, 'white')
@@ -80,6 +89,4 @@ def drawGrid(matrix):
                     if j==0 or matrix[i][j-1] == consts.EMPTY_COL :
                         surface.blit(mine(), (j * consts.CELL_SIZE, i * consts.CELL_SIZE))
 
-
-
-create_screen_grid()
+    surface.blit(sol, soldier.soldier_pos)
