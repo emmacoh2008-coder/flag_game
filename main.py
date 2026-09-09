@@ -1,25 +1,50 @@
 import pygame
-import consts
+import time
+import game_field
+import soldier
 import screen
-start=(0,0)
 
-def keys_pressed(): #הפעולה שבאמצעות המקשים שנלחצו תבחר מיקום
+
+
+
+def main():
+    game_field.add()
+    matrix = game_field.get_matrix()
     running = True
-    click=0
+    show_grid_time = 0
+    screen.create_screen()
     while running:
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                if event.type == pygame.KEYDOWN:
-                   if event.key == pygame.K_UP:
-                       click="u"
-                   elif event.key == pygame.K_DOWN:
-                       click = "d"
-                   elif event.key == pygame.K_LEFT:
-                       click = "l"
-                   elif event.key == pygame.K_RIGHT:
-                       click = "r"
-    return click
+            if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP:
+                        soldier.move_soldier("UP")
+                    elif event.key == pygame.K_DOWN:
+                        soldier.move_soldier("DOWN")
+                    elif event.key == pygame.K_LEFT:
+                        soldier.move_soldier("LEFT")
+                    elif event.key == pygame.K_RIGHT:
+                        soldier.move_soldier("RIGHT")
+                    elif event.key == pygame.K_RETURN:
+                        screen.create_screen_grid()
 
-def winner():
-    pass
+
+
+        if soldier.check_win(matrix):
+            screen.create_screen()
+            screen.draw_message("WIN")
+            time.sleep(3)
+            running = False
+        elif soldier.check_lose(matrix):
+            screen.create_screen()
+            screen.draw_message("LOSE")
+            time.sleep(3)
+            running = False
+        else:
+            screen.create_screen()
+
+        pygame.quit()
+main()
