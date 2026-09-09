@@ -1,5 +1,5 @@
 import sys
-import screen
+import draft
 game_matriz=[]
 import random
 import consts
@@ -49,7 +49,6 @@ def print_game_matrix():
         print(row)
 inserting()
 add()
-print_game_matrix()
 
 
 
