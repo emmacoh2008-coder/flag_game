@@ -36,8 +36,7 @@ def print_game_matrix():
 inserting()
 add()
 print_game_matrix()
-
-print("hiii")
+print("hi")
 
 
 
