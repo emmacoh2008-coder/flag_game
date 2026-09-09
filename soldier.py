@@ -15,31 +15,34 @@ def placement_soldier(row = 0,col= 0) :
     c=col * consts.CELL_SIZE
     return r,c
 
-def remove_soldier():
-    if consts.HEAD in game_field.game_matriz:
-       game_field.game_matriz=[i for i in game_field.game_matriz if i != consts.HEAD or i != consts.LEGS]
+soldier_pos = (0, 0)
 
-tuple=(0,0)
-def if_touch(r,c):
-    global tuple
-    tuple=(r,c)
-    for row in range(r,consts.SOLDIER_BODY_ROWS):
-        for col in range(c,consts.SOLDIER_COLS):
-            if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
-                game_field.game_matriz[row][col]=consts.HEAD
-            elif game_field.game_matriz[row][col]==consts.FLAG:
-                main.winner()
-                sys.exit()
-    for row in range(r,consts.SOLDIER_FEET_ROWS):
-        for col in range(c,consts.SOLDIER_COLS):
-            if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
-                game_field.game_matriz[row][col]=consts.LEGS
-            elif game_field.game_matriz[row][col]==consts.MINE:
-                main.loser()
-                sys.exit()
+def get_soldier_pos():
+    return soldier_pos
 
-def move():
-    global tuple
+def move_soldier(direction):
+    if direction == "UP" and soldier_pos[0] > 0:
+        soldier_pos[0] -= 1
+    elif direction == "DOWN" and soldier_pos[0] < consts.BOARD_ROWS - consts.SOLDIER_ROWS:
+        soldier_pos[0] += 1
+    elif direction == "LEFT" and soldier_pos[1] > 0:
+        soldier_pos[1] -= 1
+    elif direction == "RIGHT" and soldier_pos[1] < consts.BOARD_COLS - consts.SOLDIER_COLS:
+        soldier_pos[1] += 1
 
-    if
-        if_touch(tuple[0],tuple[1]+1)
+def check_win(matrix):
+    for r in range(consts.SOLDIER_BODY_ROWS):
+        for c in range(consts.SOLDIER_COLS):
+            check_r = soldier_pos[0] + r
+            check_c = soldier_pos[1] + c
+            if matrix[check_r][check_c] == consts.FLAG:
+                return True
+    return False
+
+def check_lose(matrix):
+    feet_row = soldier_pos[0] + consts.SOLDIER_BODY_ROWS
+    for c in range(consts.SOLDIER_COLS):
+        check_c = soldier_pos[1] + c
+        if matrix[feet_row][check_c] == consts.MINE:
+            return True
+    return False
