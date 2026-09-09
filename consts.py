@@ -24,6 +24,5 @@ MINE="MINE"
 FLAG="FLAG"
 HEAD="HEAD"
 LEGS="LEGS"
-print ("hihiihih")
 
 
