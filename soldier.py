@@ -14,13 +14,6 @@ def placement_soldier(row = 0,col= 0) :
     r= row * consts.CELL_SIZE
     c=col * consts.CELL_SIZE
     return r,c
-def check_place(r,c):
-  if r >= consts.BOARD_ROWS :
-      return False
-  if c >= consts.BOARD_COLS :
-      return False
-  return True
-
 
 def remove_soldier():
     if consts.HEAD in game_field.game_matriz:
@@ -35,16 +28,18 @@ def if_touch(r,c):
             if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
                 game_field.game_matriz[row][col]=consts.HEAD
             elif game_field.game_matriz[row][col]==consts.FLAG:
-                pass
+                main.winner()
+                sys.exit()
     for row in range(r,consts.SOLDIER_FEET_ROWS):
         for col in range(c,consts.SOLDIER_COLS):
             if game_field.game_matriz[row][col] ==consts.EMPTY_COL:
                 game_field.game_matriz[row][col]=consts.LEGS
             elif game_field.game_matriz[row][col]==consts.MINE:
-                pass
+                main.loser()
+                sys.exit()
 
-# def move():
-#     global tuple
+def move():
+    global tuple
 
-    #if
-        ##if_touch(tuple[0],tuple[1]+1)
+    if
+        if_touch(tuple[0],tuple[1]+1)
