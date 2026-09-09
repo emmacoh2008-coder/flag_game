@@ -8,6 +8,7 @@ import sys
 import time
 
 
+global surface
 surface = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
 
@@ -56,20 +57,19 @@ GREEN = (0, 255, 0, 255)
 
 
 def create_screen_grid():
-    global SCREEN, CLOCK
+    global surface
     pygame.init()
-    SCREEN = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-    CLOCK = pygame.time.Clock()
-    SCREEN.fill(BLACK)
+    #SCREEN = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
+    #CLOCK = pygame.time.Clock()
 
     while True:
-        drawGrid(game_field.get_matrix())
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+     drawGrid(game_field.get_matrix())
+     pygame.display.update()
+    # for event in pygame.event.get():
+    #     if event.type == pygame.QUIT:
+    #             pygame.quit()
+    #             sys.exit()
 
-        pygame.display.update()
 
 def mine():
     image4 = pygame.image.load('mine.png')
@@ -82,11 +82,14 @@ def drawGrid(matrix):
     for x in range(0, consts.WINDOW_WIDTH, blockSize):
         for y in range(0, consts.WINDOW_HEIGHT, blockSize):
             rect = pygame.Rect(x, y, blockSize, blockSize)
-            pygame.draw.rect(SCREEN, GREEN, rect, 1)
-        for i in range(len(matrix)):
-            for j in range(len(matrix[i])):
-                if matrix[i][j] == consts.MINE :
-                    if j==0 or matrix[i][j-1] == consts.EMPTY_COL :
-                        surface.blit(mine(), (j * consts.CELL_SIZE, i * consts.CELL_SIZE))
+            pygame.draw.rect(surface, GREEN, rect, 1)
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] == consts.MINE:
+                if j == 0 or matrix[i][j - 1] == consts.EMPTY_COL:
+                    surface.blit(mine(), (j * consts.CELL_SIZE, i * consts.CELL_SIZE))
+
 
     surface.blit(sol, soldier.soldier_pos)
+create_screen_grid()
+time.sleep(5)
