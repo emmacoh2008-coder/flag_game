@@ -8,7 +8,7 @@ import sys
 
 surface = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
-
+y
 def create_flag() :
   image3 = pygame.image.load('flag.png')
 
